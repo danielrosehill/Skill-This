@@ -26,8 +26,8 @@ Look for `profile.md` in the first of these that exists:
 3. `~/.claude-user-data/skill-this/`
 4. `${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins/skill-this/`
 
-It names the user's marketplaces, local clones, catalogue tools and deployment. Where
-it differs from a default below, the profile wins. If there is no profile, use the
+It names the user's marketplaces, local clones, catalogue tools and Canopy instance.
+Where it differs from a default below, the profile wins. If there is no profile, use the
 defaults and offer the `setup` skill at the end.
 
 ## 2. Is it already a skill?
@@ -77,28 +77,33 @@ as a gathering of specific skills, create a new plugin. Then either add those
 complementary skills, as agreed with the user, or add this as the only skill in the
 new plugin.
 
-### Deployment defaults
+### Deployment: built for Canopy
 
-Plugins are optimised for this deployment, however they are shared. The profile gives
-the specifics.
+Plugins are optimised for this deployment, however they are shared. The design is
+[Canopy](https://github.com/danielrosehill/Canopy), the open-source AI gateway: it
+holds the plugins and an MCP gateway, and agents find skills through it. Design every
+skill for this model. The profile gives the instance details.
 
-- **Delivery:** plugins are deployed to an AI gateway server that holds the plugins
-  and an MCP gateway.
 - **Client:** the user's laptop or desktop is a thin client. Claude keeps a user-level
-  connection to the gateway and finds skills through its discovery mechanism.
+  connection to Canopy and discovers skills through its catalogue, so a skill must not
+  assume anything is installed on the client.
 - **Skills over MCP servers:** skills and plugins are the preferred way to ship
   primitives. If a well-documented CLI or raw API requests can do what an MCP server
   would do, don't create one just to define tools. Where an MCP server is required,
-  prefer an existing one that fits the skill surface. Create a custom one only if
-  that can't be avoided.
-- **CLIs:** a CLI can go on the host, but preferably goes in the Alpine Linux
-  container that is part of the gateway deployment. If a CLI is required, first update
-  the Alpine configuration to seed its installation, and make sure the container keeps
-  a persistent volume mount so its configuration survives host reboots.
-- **Binary files:** where a plugin needs to transport binary files (transcription
-  tools, for example), include a skill that uses the gateway's S3 bucket as staging
-  storage. The bucket has a lifecycle policy that deletes files automatically, so
-  don't configure cleanup.
+  prefer an existing one that fits the skill surface, registered on Canopy. Create a
+  custom one only if that can't be avoided.
+- **CLIs:** a CLI can go on the host, but preferably goes in Canopy's Alpine `cli`
+  container. If a CLI is required, first seed its installation by adding it to
+  `cli/Dockerfile` in the Canopy repo, and have the skill call it through
+  `canopy run <command>`. The container's home is the persistent `agent-data/cli`
+  mount, so logins and configuration survive host reboots. Keep any CLI state there.
+- **Binary files:** tools on the gateway can't read paths on the thin client. Where a
+  plugin needs to transport binary files (transcription tools, for example), include
+  a skill that stages them in Canopy's S3 bucket with `canopy stage <file>` and passes
+  the presigned URL on. Use `--audience stack` if a service on the gateway fetches the
+  file, and the default `remote` audience for anything outside it. The `transient`
+  bucket has a lifecycle policy that deletes files after a day, so don't configure
+  cleanup.
 
 ## 4. Workspace repositories
 

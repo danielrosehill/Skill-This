@@ -1,6 +1,6 @@
 {
   "name": "skill-this",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Turn the workflow just completed into a reusable skill: check the catalogue, pick the plugin, build it, publish it.",
   "author": {
     "name": "Daniel Rosehill",
@@ -12,6 +12,7 @@
     "skills",
     "plugins",
     "workflow-capture",
-    "authoring"
+    "authoring",
+    "canopy"
   ]
 }

@@ -26,6 +26,19 @@ it should be a skill, see [To-Skill-Or-Not-To-Skill](https://github.com/danielro
 - **Which store?** Companion repositories and GitHub templates, always referenced by
   remote URL so they resolve on every client.
 
+## Built for Canopy
+
+Skills it writes target [Canopy](https://github.com/danielrosehill/Canopy), the
+open-source AI gateway, with your computer as a thin client:
+
+- Skills are found through Canopy's catalogue, not installed on each client.
+- CLIs are seeded in Canopy's Alpine `cli` container (`cli/Dockerfile`), run with
+  `canopy run`, and keep their state on its persistent mount.
+- Binary files travel through Canopy's S3 staging bucket with `canopy stage`, which
+  expires them automatically.
+
+Without Canopy, record your own setup with `setup`.
+
 ## Your data
 
 `setup` writes `profile.md` to the first of these that applies, outside the plugin

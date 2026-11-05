@@ -37,10 +37,9 @@ run. Everything here is optional: a blank field means the skill's default applie
 - Sync after push: <tool or command, or automatic>
 
 ## Deployment
-- How plugins reach the agent: <installed locally, or served from a gateway>
-- Where CLIs get installed: <environment, and the file that seeds it>
-- Persistent storage for CLI state: <mount or path>
-- Binary file transport: <route, and how to clean up>
+- Canopy instance: <host and how to reach it, or none>
+- Where CLIs get installed: <Canopy cli container, or another environment and the file that seeds it>
+- Binary file transport: <`canopy stage`, or another route>
 
 ## User data
 - User-data root for plugins: <path>
