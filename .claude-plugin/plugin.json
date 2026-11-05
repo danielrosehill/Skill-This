@@ -1,12 +1,17 @@
 {
   "name": "skill-this",
-  "version": "0.1.0",
-  "description": "Skill-This: stub plugin, scope to be defined.",
+  "version": "0.2.0",
+  "description": "Turn the workflow just completed into a reusable skill: check the catalogue, pick the plugin, build it, publish it.",
   "author": {
     "name": "Daniel Rosehill",
     "url": "https://github.com/danielrosehill"
   },
   "repository": "https://github.com/danielrosehill/Skill-This",
   "license": "MIT",
-  "keywords": ["skills"]
+  "keywords": [
+    "skills",
+    "plugins",
+    "workflow-capture",
+    "authoring"
+  ]
 }
