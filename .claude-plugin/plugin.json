@@ -1,0 +1,12 @@
+{
+  "name": "skill-this",
+  "version": "0.1.0",
+  "description": "Skill-This: stub plugin, scope to be defined.",
+  "author": {
+    "name": "Daniel Rosehill",
+    "url": "https://github.com/danielrosehill"
+  },
+  "repository": "https://github.com/danielrosehill/Skill-This",
+  "license": "MIT",
+  "keywords": ["skills"]
+}
