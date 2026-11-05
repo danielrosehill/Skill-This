@@ -181,4 +181,4 @@ anything the user must do.
 
 ## Data storage
 
-This skill reads `profile.md` and writes nothing to the user-data root.
+This skill reads `profile.env` and writes nothing to the user-data root.

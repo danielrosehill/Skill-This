@@ -1,6 +1,6 @@
 ---
 name: improve-skill
-description: Find an existing skill, even by a vague memory of it, and update it with what was just learned. Use on "improve the skill", "update that skill".
+description: Find an existing skill, even from a vague memory, and update it with what was just learned. Use on "improve skill", "update that skill".
 ---
 
 # Improve a skill

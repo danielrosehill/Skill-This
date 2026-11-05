@@ -43,15 +43,16 @@ Without Canopy, record your own setup with `setup`.
 
 ## Your data
 
-`setup` writes a short `profile.env` to the first of these that applies, outside the plugin
-install directory so updates leave it alone. Environment variables of the same name
-override it. The main ones are `CANOPY_URL_TAILSCALE`, `CANOPY_URL_LAN` and
-`CANOPY_URL_PUBLIC`.
+`setup` writes a short `profile.env`, outside the plugin install directory so updates
+leave it alone. It goes in the first of these that applies:
 
 1. `$SKILL_THIS_DATA`
 2. `$CLAUDE_USER_DATA/skill-this/`
 3. `~/.claude-user-data/skill-this/`
 4. `${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins/skill-this/`
+
+Environment variables of the same name override it. The main ones are
+`CANOPY_URL_TAILSCALE`, `CANOPY_URL_LAN` and `CANOPY_URL_PUBLIC`.
 
 ## Installation
 
