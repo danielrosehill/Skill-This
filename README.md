@@ -12,8 +12,10 @@ it should be a skill, see [To-Skill-Or-Not-To-Skill](https://github.com/danielro
 
 ## Skills
 
-- `skill-this`: capture the workflow just completed as a skill
-- `setup`: save your marketplaces, clones and deployment preferences
+- `skill-this`: there's a gap, so capture the workflow just completed as a new skill
+- `improve-skill`: there's already a skill, even if you can't remember its name, so
+  find it, update it with what you just learned, and push it
+- `setup`: save your gateway URLs, marketplaces and clones
 
 ## What it decides
 
@@ -41,8 +43,10 @@ Without Canopy, record your own setup with `setup`.
 
 ## Your data
 
-`setup` writes `profile.md` to the first of these that applies, outside the plugin
-install directory so updates leave it alone:
+`setup` writes a short `profile.env` to the first of these that applies, outside the plugin
+install directory so updates leave it alone. Environment variables of the same name
+override it. The main ones are `CANOPY_URL_TAILSCALE`, `CANOPY_URL_LAN` and
+`CANOPY_URL_PUBLIC`.
 
 1. `$SKILL_THIS_DATA`
 2. `$CLAUDE_USER_DATA/skill-this/`

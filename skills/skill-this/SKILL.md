@@ -19,15 +19,19 @@ Work through these steps in order.
 
 ## 1. Load the profile
 
-Look for `profile.md` in the first of these that exists:
+Read `profile.env` from the first of these that exists:
 
 1. `$SKILL_THIS_DATA`
 2. `$CLAUDE_USER_DATA/skill-this/`
 3. `~/.claude-user-data/skill-this/`
 4. `${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins/skill-this/`
 
-It names the user's marketplaces, local clones, catalogue tools and Canopy instance.
-Where it differs from a default below, the profile wins. If there is no profile, use the
+It is a short `KEY=value` file holding the particulars of this deployment: the gateway
+URLs, marketplaces and clones. Environment variables of the same name override it.
+Comments in the file are instructions for this user, and they win over a default below.
+
+To reach the gateway directly, try `CANOPY_URL_TAILSCALE`, then `CANOPY_URL_LAN`, then
+`CANOPY_URL_PUBLIC`, and use the first that answers. If there is no profile, use the
 defaults and offer the `setup` skill at the end.
 
 ## 2. Is it already a skill?
@@ -44,6 +48,7 @@ the library before trusting a miss.
 - **Close match found:** if a superseding or more specific skill would not have made
   the task more effective, report the skill to the user, recommend not creating a new
   one, and stop.
+  If this run improved on that skill, offer `improve-skill` instead.
 - **No match:** continue.
 
 ## 3. Where can this live?
