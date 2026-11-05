@@ -3,7 +3,7 @@
 Turn the workflow you just finished into a reusable skill, so you never have to
 redefine its scope and process.
 
-Say "skill this" at the end of a task. The agent checks your catalogue for an existing
+Say "this is a skill" at the end of a task. The agent checks your catalogue for an existing
 match, and if there isn't one, drafts the skill from the conversation, picks the right
 plugin (or a new one), and publishes it.
 
