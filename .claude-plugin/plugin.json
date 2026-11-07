@@ -1,6 +1,6 @@
 {
   "name": "skill-this",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Turn a workflow into a reusable skill, or improve an existing one with what you just learned, and publish it.",
   "author": {
     "name": "Daniel Rosehill",

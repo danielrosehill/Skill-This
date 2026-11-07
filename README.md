@@ -15,14 +15,18 @@ it should be a skill, see [To-Skill-Or-Not-To-Skill](https://github.com/danielro
 - `skill-this`: there's a gap, so capture the workflow just completed as a new skill
 - `improve-skill`: there's already a skill, even if you can't remember its name, so
   find it, update it with what you just learned, and push it
-- `setup`: save your gateway URLs, marketplaces and clones
+- `setup`: save your gateway URLs and clones, and build or refresh your marketplace map
 
 ## What it decides
 
 - **Already covered?** A reasonably close existing skill means nothing gets created.
-- **Public or private?** Public by default. Personal preferences go in user data, not
-  in the plugin.
+- **Could something be reshaped?** Before creating, it tries a private note, a template,
+  or widening, absorbing, generalising, merging or splitting existing skills.
+- **Public or private?** Public by default, and it asks which parts are private rather
+  than whether the workflow is. See [the overlay pattern](skills/skill-this/references/public-with-overlay.md):
+  one public plugin, with your particulars in a data folder, done in one pass.
 - **Which plugin?** An existing one if it fits. A new one only for a natural group.
+- **Which marketplace?** By purpose, from your marketplace map.
 - **Which primitive?** A skill on a CLI or API first, then an existing MCP server,
   then a custom one.
 - **Which store?** Companion repositories and GitHub templates, always referenced by
@@ -43,8 +47,11 @@ Without Canopy, record your own setup with `setup`.
 
 ## Your data
 
-`setup` writes a short `profile.env`, outside the plugin install directory so updates
-leave it alone. It goes in the first of these that applies:
+`setup` writes a short `profile.env` and a `marketplaces.md` map, outside the plugin
+install directory so updates leave them alone. You can add `skill-this.md` and
+`improve-skill.md` with your own rules, which win over the defaults. With a gateway,
+Claude's own marketplace list isn't the real one, so the map is how the skills know where
+to push. They go in the first of these that applies:
 
 1. `$SKILL_THIS_DATA`
 2. `$CLAUDE_USER_DATA/skill-this/`

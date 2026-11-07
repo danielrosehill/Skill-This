@@ -19,7 +19,8 @@ Work through these steps in order.
 Read `profile.env` as described in `skill-this`, in the first of these that exists:
 `$SKILL_THIS_DATA`, `$CLAUDE_USER_DATA/skill-this/`, `~/.claude-user-data/skill-this/`,
 `${XDG_DATA_HOME:-$HOME/.local/share}/claude-plugins/skill-this/`. Environment
-variables of the same name override the file.
+variables of the same name override the file. Read `marketplaces.md` and `improve-skill.md`
+there too, if they exist.
 
 ## 2. Find the skill
 
@@ -37,6 +38,10 @@ Take it from what the user said, and from this conversation:
 
 - **A kink:** what went wrong, what caused it, and what fixed it.
 - **A better way:** the step it replaces, and why it's better.
+
+Decide where it belongs before editing. If it's true only for this user, it goes in the
+plugin's data folder as a skill note or profile entry, not the skill: see
+`skill:skill-this/skill-this/references/public-with-overlay.md`.
 
 Keep to what actually happened, with the real commands and tools. If the user stated
 the change, encode that. If you can't tell what they want encoded, propose it in one
@@ -58,12 +63,16 @@ or two lines and ask.
 
 ## 5. Propagate and report
 
-If the marketplace entry records a version, update it and push the marketplace. If the
-plugin is installed locally, run `claude plugin update <plugin>@<marketplace>`. Run any
-catalogue sync step the profile gives, and confirm the catalogue shows the new commit.
+The `marketplace` field of `catalogue__read plugin:<name>` says where it's listed, and
+`marketplaces.md` gives that marketplace's clone, branch and rules. If the entry records a
+version, update it and push the marketplace. If the plugin is installed locally, run
+`claude plugin update <plugin>@<marketplace>`. Then verify as in step 7 of `skill-this`:
+`catalogue__sync plugin=<name>`, and `head` from `catalogue__read` must equal your commit.
 
 Report in two lines: which skill you changed, and what it now does differently.
 
 ## Data storage
 
-This skill reads `profile.env` and writes nothing to the user-data root.
+This skill reads `profile.env`, `marketplaces.md` and `improve-skill.md` from the data
+folder. It writes to `marketplaces.md`, and to a plugin's data folder when a change is
+specific to this user.
